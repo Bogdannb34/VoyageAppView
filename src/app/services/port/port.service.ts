@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Port } from 'src/app/models/Port';
 
 import { environment } from 'src/environments/environment';
 

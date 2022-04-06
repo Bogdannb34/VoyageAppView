@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Voyage } from 'src/app/models/Voyage';
 
 import { environment } from 'src/environments/environment';
 
