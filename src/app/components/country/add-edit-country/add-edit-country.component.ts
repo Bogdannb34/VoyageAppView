@@ -41,7 +41,7 @@ export class AddEditCountryComponent implements OnInit {
         if (showAddSuccess) {
           showAddSuccess.style.display = 'none';
         }
-      }, 4000);
+      }, 5000);
     });
 
   }
