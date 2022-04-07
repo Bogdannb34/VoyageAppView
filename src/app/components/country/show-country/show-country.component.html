@@ -4,18 +4,38 @@
     Add Country
 </button>
 
-<table class="table table-striped">
-    <thead>
-        <th>Id</th>
-        <th>Country Name</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of countries$|async">
-            <td>{{item.countryId}}</td>
-            <td>{{item.countryName}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="d-flex flex-column  w-75">
+    <h4>Please select a country for ports</h4>
+    <select class="form-select" [(ngModel)]="selectedCountry" aria-label="Countries"
+        (ngModelChange)="showCountryPorts()">
+        <option *ngFor="let item of countries$|async" [ngValue]="item">{{item.countryName}}</option>
+    </select>
+
+    <table class="table table-striped table-sm">
+        <thead>
+            <th>Id</th>
+            <th>Port Name</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of portsList">
+                <td>{{item.portId}}</td>
+                <td>{{item.portName}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="alert alert-success" role="alert" id="add-success-alert">
+    Country successfully added!
+</div>
+
+<div class="alert alert-success" role="alert" id="update-success-alert">
+    Country successfully updated!
+</div>
+
+<div class="alert alert-success" role="alert" id="delete-success-alert">
+    Country successfully deleted!
+</div>
 
 
 <!-- Add new country Modal -->
@@ -25,14 +45,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">{{activeTitle}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="modalClose()" id="add-edit-modal-close"></button>
             </div>
             <div class="modal-body">
-                <app-add-edit-country></app-add-edit-country>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+                <app-add-edit-country [country]="country" *ngIf="activateAddEditComponent"></app-add-edit-country>
             </div>
         </div>
     </div>
