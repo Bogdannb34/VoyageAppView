@@ -1,6 +1,17 @@
 <form>
     <div class="mb-3">
-        <label for="countryName">Country Name</label>
-        <input type="text" name="countryName" id="countryName">
+        <label for="countryName" class="form-label">Country Name</label>
+        <input type="text" class="form-control" name="countryName" [(ngModel)]="countryName"
+            *ngIf="country.countryId != 0">
+        <input type="text" class="form-control" name="countryName" [(ngModel)]="countryName"
+            *ngIf="country.countryId == 0">
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button (click)="addCountry()" *ngIf="country.countryId == 0" type="button"
+                class="btn btn-primary">Add</button>
+            <button (click)="updateCountry()" *ngIf="country.countryId != 0" type="button"
+                class="btn btn-primary">Update</button>
+        </div>
     </div>
 </form>
